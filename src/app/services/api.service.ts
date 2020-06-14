@@ -8,6 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class ApiService {
 
+
   constructor(
     private http: HttpClient
   ) { }
@@ -19,8 +20,8 @@ export class ApiService {
     })
   };
 
-  imgUrl = "http://localhost:3000"
-  //imgUrl = "http://inv-web1.herokuapp.com"
+  //imgUrl = "http://localhost:3000"
+    imgUrl = "http://inv-web1.herokuapp.com"
 
   getImages(): Observable<ImageApi[]> {
     return this.http.get<ImageApi[]>(`${this.imgUrl}/images`).pipe(
