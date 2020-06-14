@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Tus Días</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="days && days.length > 0; else noDays">
+    <ion-card *ngFor ="let day of days">
+      <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-datetime [(ngModel)]="currentDay"></ion-datetime> 
+      </ion-item>
+      <img [src]="day.photo">
+
+
+    <ion-card-content>
+      <div class="content_dia">
+        <h1>{{day.titulo}}</h1>
+        <p>{{day.descripcion}}</p>
+      </div>
+
+      <!-- Audio -->
+        <ion-item (click)="play(day.audio)" class="itemAudio">
+          <ion-icon
+            name="mic"
+            slot="start"
+          ></ion-icon>
+          <h3>Audio {{day.id_diario}}</h3>
+        </ion-item>
+
+
+    </ion-card-content>
+
+    <ion-buttons>
+      <ion-button (click) = "editDay(day.id_diario)">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click) = "deleteDay(day.id_diario)" slot="end">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-card>
+  </ion-list>
+
+  <ng-template #noDays> 
+    <ion-text>
+      <p class="ion-text-center">No hay días todavía.</p>
+    </ion-text>
+  </ng-template>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color = "danger" (click) = "addDays()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
