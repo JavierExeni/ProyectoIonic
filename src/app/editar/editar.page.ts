@@ -19,7 +19,7 @@ export class EditarPage implements OnInit {
   imgURL: string; 
   audioURL: string;
   files = [];
-
+  flagAudio = false;
 
   day: Diario;
 
@@ -112,6 +112,7 @@ export class EditarPage implements OnInit {
   deleteFile(path: string) {
     console.log('path del audio ', path);
     let myPath = path;
+    this.audioURL = "Nada";
     // Make sure we copy from the right location
     if (path.indexOf('file://') < 0) {
       myPath = 'file://' + path;
@@ -173,5 +174,15 @@ export class EditarPage implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  verAudio(){
+    if(this.audioURL.length == 0 || this.audioURL == 'Nada'){
+      console.log('entro', this.flagAudio)
+      this.flagAudio = false;
+      return this.flagAudio
+    }
+    this.flagAudio = true;
+    console.log('esto contiene audio editar', this.audioURL)
+    return this.flagAudio
+  }
 
 }

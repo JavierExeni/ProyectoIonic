@@ -7,6 +7,7 @@ import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Vibration } from '@ionic-native/vibration/ngx';
 
 const MEDIA_FOLDER_NAME = 'audio_app_media';
 
@@ -40,7 +41,8 @@ export class AgregarPage implements OnInit {
     private file: File,
     private camera: Camera,
     private plt: Platform,
-    private router: Router) { }
+    private router: Router,
+    private vibration: Vibration) { }
 
   ngOnInit() {
     this.plt.ready().then(() => {
@@ -183,9 +185,12 @@ export class AgregarPage implements OnInit {
     this.db.addDay(titulo.value, photo, audio, descripcion.value)
     .then(_ => {
       this.day = {};
+      this.vibration.vibrate(2000);
+      this.router.navigate(['/home']);
     });
-    this.router.navigate(['/home']);
   }
+
+
 
   verImg(): Boolean{
     if(this.imgURL == 'nada'){

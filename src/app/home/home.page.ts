@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService, Diario } from '../services/database.service';
 import { Router } from '@angular/router';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +14,12 @@ export class HomePage implements OnInit{
 
   days: Diario[] = [];
 
+  audioURL: String[]
+
   currentDay = new Date().toISOString();
 
-  constructor(private db: DatabaseService, private router: Router, private media: Media) {}
+  constructor(private db: DatabaseService, private router: Router, 
+    private media: Media, private vibration: Vibration, private alertController: AlertController) {}
 
   ngOnInit() {
     this.db.getDatabaseState().subscribe(ready => {
@@ -22,6 +27,10 @@ export class HomePage implements OnInit{
         this.db.getDays().subscribe(dias => {
           console.log('dias cmabiado ' + dias);
           this.days = dias;
+          for(let day of this.days){
+            this.audioURL.push(day.audio)
+          }
+          console.log('estos son los audios en array ', this.audioURL)
         })
       }
     })
@@ -35,9 +44,26 @@ export class HomePage implements OnInit{
     this.router.navigate(['/editar/' + id_diario])
   }
 
-  deleteDay(id_diario){
-    this.db.deleteDay(id_diario)
-    this.ngOnInit()
+  async deleteDay(id_diario){
+    const alert = await this.alertController.create({
+      header: '¿Estas seguro que quieres eliminar este día?',
+      message: 'Cuidado...',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: () =>{
+            this.db.deleteDay(id_diario)
+            this.vibration.vibrate(1500);
+            this.ngOnInit()
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   play(audio: string){
@@ -45,6 +71,10 @@ export class HomePage implements OnInit{
       // We need to remove file:/// from the path for the audio plugin to work
       const audioFile: MediaObject = this.media.create(audio);
       audioFile.play();
+  }
+
+  verAudio(){
+
   }
  
 }

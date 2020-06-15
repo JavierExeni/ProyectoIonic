@@ -27,7 +27,7 @@
 }
 
 h1{
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid white;
   margin-bottom: 10px;
 }
 
@@ -35,7 +35,21 @@ h3{
   font-size: 18px;
 }
 
+ion-item{
+  --background: rgb(75, 75, 75) ;
+}
+
 .itemAudio{
   margin-top: 10px;
-  border-top: 1px solid grey;
+  border-bottom: 1px solid white;
+}
+
+ion-toolbar{
+  --background: rgb(75, 75, 75);
+}
+
+ion-list ion-card{
+  border: 1px solid white;
+  --background: rgb(75, 75, 75);
+  color: white;
 }

@@ -12,7 +12,16 @@ ion-card{
 }
 
 .itemicon{
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
+    --background: rgb(75, 75, 75);
+}
+
+#audioFondo{
+    --background: rgb(75, 75, 75);
+}
+
+#editar{
+    margin-bottom: 10px;
 }
 
 #cam{
@@ -35,4 +44,10 @@ ion-input{
 
 #btneditarAudio{
     justify-content: flex-end;
+}
+
+ion-card{
+    border: 1px solid white;
+    --background: rgb(75, 75, 75);
+    color: white;
 }

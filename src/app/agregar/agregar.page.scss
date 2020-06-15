@@ -1,0 +1,21 @@
+ion-card{
+    border: 1px solid white;
+    --background: rgb(75, 75, 75);
+    color: white;
+}
+
+ion-card-content ion-input{
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+#creaAudio{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.itemAudio{
+    margin-top: 10px;
+    border-bottom: 1px solid white;
+    --background: rgb(75, 75, 75);
+}

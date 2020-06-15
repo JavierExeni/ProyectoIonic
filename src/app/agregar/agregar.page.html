@@ -34,10 +34,11 @@
 
           <!-- Audio -->
           <ion-item-sliding *ngIf="verAudio()">
-            <ion-item (click)="play(auxfile)">
+            <ion-item (click)="play(auxfile)" class="itemAudio">
               <ion-icon
                 name="mic"
                 slot="start"
+                [style.color]="'white'"
               ></ion-icon>
               <ion-label class="ion-text-wrap">
                 {{ auxfile.name }}
@@ -53,7 +54,7 @@
           </ion-item-sliding>
 
           <ion-buttons>
-            <ion-button color="primary" (click)="capturarAudio()"
+            <ion-button color="primary" (click)="capturarAudio()" id="creaAudio"
               >Crea un Audio</ion-button
             >
           </ion-buttons>
