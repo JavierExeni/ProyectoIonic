@@ -11,8 +11,10 @@
   <ion-row>
     <ion-col>
       <ion-card *ngIf="day">
-        <img *ngIf = "day.photo" [src]="imgURL" alt="Imagen del día" />
-        <ion-icon name="close-circle-outline" class="eliminarImg"  [style.color]="'rgb(245, 49, 49'"></ion-icon>
+        <div *ngIf = "imgURL != 'Nada'">
+          <img [src]="imgURL" alt="Imagen del día"/>
+          <ion-icon name="close-circle-outline" class="eliminarImg"  [style.color]="'white'" (click) = "eliminarImg()"></ion-icon>
+        </div>
         
         <ion-card-content>
           <ion-item class="itemicon">

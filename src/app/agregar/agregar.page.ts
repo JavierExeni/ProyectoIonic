@@ -185,7 +185,7 @@ export class AgregarPage implements OnInit {
     this.db.addDay(titulo.value, photo, audio, descripcion.value)
     .then(_ => {
       this.day = {};
-      this.vibration.vibrate(2000);
+      this.vibration.vibrate(1000);
       this.router.navigate(['/home']);
     });
   }

@@ -185,4 +185,9 @@ export class EditarPage implements OnInit {
     return this.flagAudio
   }
 
+  eliminarImg(){
+    console.log('Entreee 1 ', this.imgURL)
+    this.imgURL = 'Nada'
+    console.log('Entreee 2 ', this.imgURL)
+  }
 }

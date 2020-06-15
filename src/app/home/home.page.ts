@@ -14,8 +14,6 @@ export class HomePage implements OnInit{
 
   days: Diario[] = [];
 
-  audioURL: String[]
-
   currentDay = new Date().toISOString();
 
   constructor(private db: DatabaseService, private router: Router, 
@@ -27,10 +25,6 @@ export class HomePage implements OnInit{
         this.db.getDays().subscribe(dias => {
           console.log('dias cmabiado ' + dias);
           this.days = dias;
-          for(let day of this.days){
-            this.audioURL.push(day.audio)
-          }
-          console.log('estos son los audios en array ', this.audioURL)
         })
       }
     })
@@ -71,10 +65,6 @@ export class HomePage implements OnInit{
       // We need to remove file:/// from the path for the audio plugin to work
       const audioFile: MediaObject = this.media.create(audio);
       audioFile.play();
-  }
-
-  verAudio(){
-
   }
  
 }

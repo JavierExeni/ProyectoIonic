@@ -12,8 +12,9 @@
         <ion-label>Fecha</ion-label>
         <ion-datetime [(ngModel)]="currentDay"></ion-datetime> 
       </ion-item>
-      <img [src]="day.photo">
-
+      <div *ngIf = "day.photo != 'Nada'">
+        <img [src]="day.photo">
+      </div>
 
     <ion-card-content>
       <div class="content_dia">
@@ -22,7 +23,7 @@
       </div>
 
       <!-- Audio -->
-        <ion-item (click)="play(day.audio)" class="itemAudio">
+        <ion-item *ngIf = "day.audio != 'Nada'" (click)="play(day.audio)" class="itemAudio">
           <ion-icon
             name="mic"
             slot="start"
